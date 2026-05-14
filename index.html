@@ -11,450 +11,165 @@
     rel="stylesheet"
   />
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-    }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-weight: 400;
-      color: #1a1c1e;
-      background: #f6f4ef;
-      line-height: 1.6;
-    }
-    /* ── Design tokens ── */
-    :root {
-      --ink: #1a1c1e;
-      --muted: #7a7a7a;
-      --cream: #f6f4ef;
-      --white: #ffffff;
-      --sage: #8a9b7e;
-      --sage-light: #e3e8de;
-      --clay: #c4734f;
-      --gold: #c9a96e;
-      --border: rgba(26, 28, 30, 0.08);
-      --shadow: 0 1px 3px rgba(0,0,0,0.04);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,0.06);
-      --radius: 16px;
-      --radius-sm: 8px;
-    }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    button { font: inherit; cursor: pointer; border: none; background: none; }
-
-    /* ── Layout ── */
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    @media (min-width: 768px) {
-      .container { padding: 0 40px; }
-    }
-
-    /* ── Section ── */
-    section { padding: 80px 0; }
-    @media (min-width: 768px) { section { padding: 120px 0; } }
-    section + section { border-top: 1px solid var(--border); }
-
-    .label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .heading {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 36px;
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-    }
-    @media (min-width: 768px) { .heading { font-size: 48px; } }
-    .heading-lg {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 44px;
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.015em;
-    }
-    @media (min-width: 768px) { .heading-lg { font-size: 64px; } }
-    .body-text {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 480px;
-    }
-    @media (min-width: 768px) { .body-text { font-size: 16px; } }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
+    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; font-weight:400; color:#1a1c1e; background:#f6f4ef; line-height:1.6; }
+    :root { --ink:#1a1c1e; --muted:#7a7a7a; --cream:#f6f4ef; --white:#ffffff; --sage:#8a9b7e; --sage-light:#e3e8de; --clay:#c4734f; --gold:#c9a96e; --border:rgba(26,28,30,0.08); --shadow:0 1px 3px rgba(0,0,0,0.04); --shadow-lg:0 8px 32px rgba(0,0,0,0.06); --radius:16px; --radius-sm:8px; }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    button { font:inherit; cursor:pointer; border:none; background:none; }
+    .container { max-width:1120px; margin:0 auto; padding:0 24px; }
+    @media (min-width:768px) { .container { padding:0 40px; } }
+    section { padding:80px 0; }
+    @media (min-width:768px) { section { padding:120px 0; } }
+    section + section { border-top:1px solid var(--border); }
+    .label { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+    .heading { font-family:'Instrument Serif',Georgia,serif; font-size:36px; font-weight:400; line-height:1.15; letter-spacing:-0.01em; color:var(--ink); }
+    @media (min-width:768px) { .heading { font-size:48px; } }
+    .heading-lg { font-family:'Instrument Serif',Georgia,serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-0.015em; }
+    @media (min-width:768px) { .heading-lg { font-size:64px; } }
+    .body-text { font-size:15px; line-height:1.7; color:var(--muted); font-weight:300; max-width:480px; }
+    @media (min-width:768px) { .body-text { font-size:16px; } }
 
     /* ── Buttons ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 24px;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      border-radius: var(--radius-sm);
-      transition: all 0.25s ease;
-    }
-    @media (min-width: 768px) {
-      .btn { padding: 14px 32px; font-size: 14px; }
-    }
-    .btn-primary {
-      background: var(--ink);
-      color: var(--white);
-    }
-    .btn-primary:hover {
-      background: #2d2f31;
-    }
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--ink);
-      background: transparent;
-    }
-    .btn-outline:hover {
-      border-color: var(--ink);
-      background: rgba(26,28,30,0.03);
-    }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 24px; font-size:13px; font-weight:500; letter-spacing:0.02em; border-radius:var(--radius-sm); transition:all 0.25s ease; }
+    @media (min-width:768px) { .btn { padding:14px 32px; font-size:14px; } }
+    .btn-primary { background:var(--ink); color:var(--white); }
+    .btn-primary:hover { background:#2d2f31; }
+    .btn-outline { border:1px solid var(--border); color:var(--ink); background:transparent; }
+    .btn-outline:hover { border-color:var(--ink); background:rgba(26,28,30,0.03); }
+    .btn-gold { background:var(--gold); color:var(--white); }
+    .btn-gold:hover { background:#b8945c; }
 
     /* ── HERO ── */
-    .hero {
-      padding-top: 60px;
-      padding-bottom: 60px;
-      position: relative;
-      overflow: hidden;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-    @media (min-width: 768px) {
-      .hero { padding-top: 80px; padding-bottom: 80px; }
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -40%;
-      right: -20%;
-      width: 80%;
-      height: 120%;
-      background: radial-gradient(ellipse at center, rgba(138,155,126,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-grid {
-      display: grid;
-      gap: 48px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    @media (min-width: 768px) {
-      .hero-grid { grid-template-columns: 1fr 1fr; gap: 64px; }
-    }
-    .hero-content {
-      max-width: 520px;
-    }
-    .hero-content .label {
-      margin-bottom: 24px;
-    }
-    .hero-content h1 {
-      margin-bottom: 24px;
-    }
-    .hero-content p {
-      margin-bottom: 40px;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .hero-metrics {
-      display: flex;
-      gap: 32px;
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-    .hero-metrics dt {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--ink);
-    }
-    .hero-metrics dd {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-    }
+    .hero { padding-top:60px; padding-bottom:60px; position:relative; overflow:hidden; min-height:100vh; display:flex; align-items:center; }
+    @media (min-width:768px) { .hero { padding-top:80px; padding-bottom:80px; } }
+    .hero::before { content:''; position:absolute; top:-40%; right:-20%; width:80%; height:120%; background:radial-gradient(ellipse at center,rgba(138,155,126,0.08) 0%,transparent 70%); pointer-events:none; }
+    .hero-grid { display:grid; gap:48px; align-items:center; position:relative; z-index:1; }
+    @media (min-width:768px) { .hero-grid { grid-template-columns:1fr 1fr; gap:64px; } }
+    .hero-content { max-width:520px; }
+    .hero-content .label { margin-bottom:24px; }
+    .hero-content h1 { margin-bottom:16px; }
+    .hero-content p { margin-bottom:24px; }
+
+    /* ── Harga ── */
+    .hero-price { display:flex; align-items:baseline; gap:12px; margin-bottom:32px; }
+    .hero-price .price-current { font-family:'Instrument Serif',Georgia,serif; font-size:40px; font-weight:400; color:var(--ink); letter-spacing:-0.02em; }
+    @media (min-width:768px) { .hero-price .price-current { font-size:48px; } }
+    .hero-price .price-label { font-size:13px; color:var(--muted); font-weight:400; }
+    .hero-price .price-badge { font-size:11px; font-weight:500; letter-spacing:0.05em; background:var(--sage-light); color:var(--sage); padding:4px 12px; border-radius:20px; }
+    .hero-price .price-original { font-size:16px; color:var(--muted); text-decoration:line-through; }
+
+    .hero-actions { display:flex; gap:16px; flex-wrap:wrap; }
+    .hero-metrics { display:flex; gap:32px; margin-top:40px; padding-top:28px; border-top:1px solid var(--border); }
+    .hero-metrics dt { font-family:'Instrument Serif',Georgia,serif; font-size:28px; font-weight:400; color:var(--ink); }
+    .hero-metrics dd { font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
 
     /* ── Product image ── */
-    .hero-image {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .hero-image-frame {
-      position: relative;
-      width: 300px;
-      height: 400px;
-      border-radius: 160px 160px 40px 40px;
-      overflow: hidden;
-      background: var(--sage-light);
-      box-shadow: var(--shadow-lg);
-    }
-    @media (min-width: 768px) {
-      .hero-image-frame { width: 380px; height: 500px; }
-    }
-    .hero-image-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero-image-float {
-      position: absolute;
-      bottom: -16px;
-      left: -16px;
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      box-shadow: var(--shadow-lg);
-      font-size: 12px;
-      line-height: 1.4;
-      max-width: 140px;
-    }
-    @media (min-width: 768px) {
-      .hero-image-float { bottom: -24px; left: -24px; padding: 20px 24px; max-width: 180px; }
-    }
-    .hero-image-float strong {
-      display: block;
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 14px;
-      font-weight: 400;
-      margin-bottom: 4px;
-    }
-    .hero-image-float span {
-      color: var(--muted);
-      font-weight: 300;
-    }
+    .hero-image { position:relative; display:flex; justify-content:center; align-items:center; }
+    .hero-image-frame { position:relative; width:300px; height:400px; border-radius:160px 160px 40px 40px; overflow:hidden; background:var(--sage-light); box-shadow:var(--shadow-lg); }
+    @media (min-width:768px) { .hero-image-frame { width:380px; height:500px; } }
+    .hero-image-frame img { width:100%; height:100%; object-fit:cover; }
+    .hero-image-float { position:absolute; bottom:-16px; left:-16px; background:var(--white); border-radius:var(--radius); padding:16px 20px; box-shadow:var(--shadow-lg); font-size:12px; line-height:1.4; max-width:140px; }
+    @media (min-width:768px) { .hero-image-float { bottom:-24px; left:-24px; padding:20px 24px; max-width:180px; } }
+    .hero-image-float strong { display:block; font-family:'Instrument Serif',Georgia,serif; font-size:14px; font-weight:400; margin-bottom:4px; }
+    .hero-image-float span { color:var(--muted); font-weight:300; }
+    .hero-image-badge { position:absolute; top:-8px; right:-8px; background:var(--gold); color:var(--white); width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-size:10px; font-weight:600; letter-spacing:0.04em; line-height:1.2; box-shadow:var(--shadow-lg); }
+    @media (min-width:768px) { .hero-image-badge { width:80px; height:80px; font-size:12px; } }
 
-    /* ── Problem section ── */
-    .problem {
-      text-align: center;
-    }
-    .problem .container {
-      max-width: 640px;
-    }
-    .problem p {
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--ink);
-    }
-    @media (min-width: 768px) { .problem p { font-size: 22px; } }
-    .problem em {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-style: italic;
-      color: var(--clay);
-    }
+    /* ── Problem ── */
+    .problem { text-align:center; }
+    .problem .container { max-width:640px; }
+    .problem p { font-size:18px; font-weight:300; line-height:1.7; color:var(--ink); }
+    @media (min-width:768px) { .problem p { font-size:22px; } }
+    .problem em { font-family:'Instrument Serif',Georgia,serif; font-style:italic; color:var(--clay); }
 
     /* ── Benefits ── */
-    .benefits-grid {
-      display: grid;
-      gap: 1px;
-      background: var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    @media (min-width: 768px) { .benefits-grid { grid-template-columns: 1fr 1fr; } }
-    .benefit-item {
-      background: var(--white);
-      padding: 40px 32px;
-    }
-    @media (min-width: 768px) { .benefit-item { padding: 48px 40px; } }
-    .benefit-item h3 {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .benefit-item p {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--ink);
-      max-width: 320px;
-    }
-    .benefit-item .benefit-icon {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 36px;
-      color: var(--sage);
-      margin-bottom: 20px;
-    }
+    .benefits-grid { display:grid; gap:1px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
+    @media (min-width:768px) { .benefits-grid { grid-template-columns:1fr 1fr; } }
+    .benefit-item { background:var(--white); padding:40px 32px; }
+    @media (min-width:768px) { .benefit-item { padding:48px 40px; } }
+    .benefit-item h3 { font-size:13px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .benefit-item p { font-size:15px; font-weight:300; line-height:1.7; color:var(--ink); max-width:320px; }
+    .benefit-item .benefit-icon { font-family:'Instrument Serif',Georgia,serif; font-size:36px; color:var(--sage); margin-bottom:20px; }
 
-    /* ── How to use ── */
-    .how-grid {
-      display: grid;
-      gap: 32px;
-    }
-    @media (min-width: 768px) { .how-grid { grid-template-columns: 1fr 1fr 1fr; gap: 48px; } }
-    .how-step {
-      counter-increment: step;
-    }
-    .how-step::before {
-      display: block;
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 14px;
-      color: var(--sage);
-      margin-bottom: 16px;
-      content: '0' counter(step);
-    }
-    .how-step h3 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 22px;
-      font-weight: 400;
-      margin-bottom: 12px;
-    }
-    .how-step p {
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-    .how-steps {
-      counter-reset: step;
-    }
+    /* ── How to ── */
+    .how-grid { display:grid; gap:32px; counter-reset:step; }
+    @media (min-width:768px) { .how-grid { grid-template-columns:1fr 1fr 1fr; gap:48px; } }
+    .how-step { counter-increment:step; }
+    .how-step::before { display:block; font-family:'Instrument Serif',Georgia,serif; font-size:14px; color:var(--sage); margin-bottom:16px; content:'0' counter(step); }
+    .how-step h3 { font-family:'Instrument Serif',Georgia,serif; font-size:22px; font-weight:400; margin-bottom:12px; }
+    .how-step p { font-size:14px; font-weight:300; line-height:1.7; color:var(--muted); }
 
     /* ── Testimonials ── */
-    .testimonial-grid {
-      display: grid;
-      gap: 1px;
-      background: var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .testimonial-card {
-      background: var(--white);
-      padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
-      min-height: 200px;
-    }
-    @media (min-width: 768px) { .testimonial-card { padding: 48px 40px; } }
-    .testimonial-card .stars {
-      font-size: 14px;
-      letter-spacing: 4px;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-    .testimonial-card blockquote {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--ink);
-      flex: 1;
-    }
-    .testimonial-card cite {
-      font-style: normal;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      margin-top: 24px;
-    }
-    @media (min-width: 768px) {
-      .testimonial-grid { grid-template-columns: 1fr 1fr 1fr; }
-    }
+    .testimonial-grid { display:grid; gap:1px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
+    .testimonial-card { background:var(--white); padding:40px 32px; display:flex; flex-direction:column; min-height:200px; }
+    @media (min-width:768px) { .testimonial-card { padding:48px 40px; } }
+    .testimonial-card .stars { font-size:14px; letter-spacing:4px; color:var(--gold); margin-bottom:24px; }
+    .testimonial-card blockquote { font-size:15px; font-weight:300; line-height:1.7; color:var(--ink); flex:1; }
+    .testimonial-card cite { font-style:normal; font-size:13px; font-weight:500; color:var(--muted); margin-top:24px; }
+    @media (min-width:768px) { .testimonial-grid { grid-template-columns:1fr 1fr 1fr; } }
+
+    /* ── FAQ + Garansi ── */
+    .faq-grid { display:grid; gap:1px; background:var(--border); border-radius:var(--radius); overflow:hidden; margin-top:40px; }
+    @media (min-width:768px) { .faq-grid { grid-template-columns:1fr 1fr; } }
+    .faq-item { background:var(--white); padding:28px 24px; }
+    .faq-item h3 { font-size:14px; font-weight:500; color:var(--ink); margin-bottom:8px; }
+    .faq-item p, .faq-item ul { font-size:13px; font-weight:300; line-height:1.7; color:var(--muted); }
+    .faq-item ul { list-style:disc; padding-left:20px; margin-top:6px; }
+    .faq-item ul li { margin-bottom:4px; }
+
+    .guarantee-banner { background:var(--sage-light); border-radius:var(--radius); padding:32px 24px; margin-top:32px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:center; text-align:center; }
+    @media (min-width:768px) { .guarantee-banner { padding:32px 40px; flex-wrap:nowrap; text-align:left; } }
+    .guarantee-banner .guarantee-icon { font-size:36px; flex-shrink:0; }
+    .guarantee-banner .guarantee-text { }
+    .guarantee-banner .guarantee-text strong { display:block; font-size:16px; color:var(--ink); margin-bottom:4px; }
+    .guarantee-banner .guarantee-text span { font-size:13px; color:var(--muted); font-weight:300; }
 
     /* ── CTA ── */
-    .cta-section {
-      background: var(--ink);
-      color: var(--white);
-      border-radius: var(--radius);
-    }
-    @media (min-width: 768px) { .cta-section { border-radius: 24px; } }
-    .cta-section .container {
-      padding: 64px 32px;
-    }
-    @media (min-width: 768px) { .cta-section .container { padding: 96px 64px; } }
-    .cta-section .label { color: rgba(255,255,255,0.5); }
-    .cta-section .heading { color: var(--white); }
-    .cta-section p { color: rgba(255,255,255,0.6); margin-top: 16px; }
-    .cta-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 40px;
-    }
-    .cta-section .btn-primary {
-      background: var(--white);
-      color: var(--ink);
-    }
-    .cta-section .btn-primary:hover {
-      background: #e8e6e1;
-    }
-    .cta-section .btn-outline {
-      border-color: rgba(255,255,255,0.2);
-      color: var(--white);
-    }
-    .cta-section .btn-outline:hover {
-      border-color: rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.05);
-    }
+    .cta-section { background:var(--ink); color:var(--white); border-radius:var(--radius); }
+    @media (min-width:768px) { .cta-section { border-radius:24px; } }
+    .cta-section .container { padding:64px 32px; }
+    @media (min-width:768px) { .cta-section .container { padding:96px 64px; } }
+    .cta-section .label { color:rgba(255,255,255,0.5); }
+    .cta-section .heading { color:var(--white); }
+    .cta-section p { color:rgba(255,255,255,0.6); margin-top:16px; }
+    .cta-actions { display:flex; gap:16px; flex-wrap:wrap; margin-top:40px; }
+    .cta-section .btn-primary { background:var(--white); color:var(--ink); }
+    .cta-section .btn-primary:hover { background:#e8e6e1; }
+    .cta-section .btn-outline { border-color:rgba(255,255,255,0.2); color:var(--white); }
+    .cta-section .btn-outline:hover { border-color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.05); }
 
     /* ── Bottom bar ── */
-    .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border);
-      padding: 12px 16px;
-      z-index: 100;
-    }
-    @media (min-width: 768px) { .bottom-bar { padding: 16px 24px; } }
-    .bottom-bar .container {
-      display: flex;
-      gap: 12px;
-      max-width: 480px;
-    }
-    .bottom-bar .btn {
-      flex: 1;
-      padding: 14px;
-      font-size: 13px;
-      border-radius: var(--radius-sm);
-    }
+    .bottom-bar { position:fixed; bottom:0; left:0; right:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-top:1px solid var(--border); padding:12px 16px; z-index:100; }
+    @media (min-width:768px) { .bottom-bar { padding:16px 24px; } }
+    .bottom-bar .container { display:flex; gap:12px; max-width:480px; }
+    .bottom-bar .btn { flex:1; padding:14px; font-size:13px; border-radius:var(--radius-sm); }
+    .bottom-spacer { height:80px; }
+    @media (min-width:768px) { .bottom-spacer { height:88px; } }
 
-    /* ── Spacer for fixed bar ── */
-    .bottom-spacer { height: 80px; }
-    @media (min-width: 768px) { .bottom-spacer { height: 88px; } }
+    /* ── Certs strip ── */
+    .certs-strip { display:flex; gap:24px; flex-wrap:wrap; align-items:center; margin-top:32px; padding-top:32px; border-top:1px solid var(--border); }
+    .certs-strip img { height:40px; width:auto; }
+    .certs-strip .certs-label { font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); }
 
-    /* ── Responsive ── */
-    @media (max-width: 767px) {
-      .hero { min-height: auto; }
-      .hero-metrics { gap: 24px; }
-      .hero-metrics dt { font-size: 24px; }
-      .heading-lg { font-size: 34px; }
-      .heading { font-size: 28px; }
+    /* ── Trust badges hero ── */
+    .trust-badges { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:20px; padding:12px 16px; background:rgba(138,155,126,0.08); border-radius:var(--radius-sm); }
+    .trust-badges .trust-icon { width:36px; height:36px; border-radius:50%; background:var(--white); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:600; flex-shrink:0; box-shadow:var(--shadow); }
+    .trust-badges .trust-icon.halal { color:#0a7d3a; border:2px solid #0a7d3a; }
+    .trust-badges .trust-icon.pirt { color:#c4734f; border:2px solid #c4734f; font-size:9px; line-height:1; }
+    .trust-badges .trust-icon.bpom { color:#2d5d8f; border:2px solid #2d5d8f; font-size:9px; }
+    .trust-badges .trust-text { font-size:12px; color:var(--ink); font-weight:500; }
+    .trust-badges .trust-text small { display:block; color:var(--muted); font-weight:300; font-size:11px; margin-top:2px; }
+
+    @media (max-width:767px) {
+      .hero { min-height:auto; }
+      .hero-metrics { gap:24px; }
+      .hero-metrics dt { font-size:24px; }
+      .heading-lg { font-size:34px; }
+      .heading { font-size:28px; }
+      .certs-strip { gap:16px; }
+      .certs-strip img { height:32px; }
     }
   </style>
 </head>
@@ -467,17 +182,31 @@
         <p class="label">Sacha Inchi Oil · Cold-Pressed</p>
         <h1 class="heading-lg">Sacha Inchi Oil</h1>
         <p class="body-text">
-          Minyak nabati tinggi Omega 3, 6, dan 9. Cold-pressed tanpa panas tinggi, cocok untuk kebutuhan lemak baik yang hilang karena pola makan modern.
+          Minyak nabati tinggi Omega 3, 6, dan 9. Cold-pressed tanpa panas tinggi, lemak baik untuk tubuh kamu.
         </p>
+        <!-- ═══ QUICK WIN #1: HARGA ═══ -->
+        <div class="hero-price">
+          <span class="price-current">Rp89.000</span>
+          <span class="price-label">/ botol 250ml</span>
+          <span class="price-badge">FREE ONGKIR</span>
+        </div>
+        <!-- ═══ QUICK WIN #3: SIMPLIFY CTA ═══ -->
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary">Tanya via WA</a>
-          <a href="#" class="btn btn-outline">Cara Konsumsi</a>
+          <a href="#" class="btn btn-primary">Chat WA — Konsultasi Dulu</a>
+          <a href="#" class="btn btn-outline">Beli di Shopee</a>
         </div>
         <dl class="hero-metrics">
           <div><dt>100%</dt><dd>Cold Pressed</dd></div>
           <div><dt>Omega</dt><dd>3·6·9</dd></div>
           <div><dt>Daily</dt><dd>Routine</dd></div>
         </dl>
+        <!-- ═══ TRUST BADGES: HALAL + PIRT ═══ -->
+        <div class="trust-badges">
+          <img src="halal-indonesia.png" alt="Halal Indonesia" style="height:40px;width:auto;border-radius:0;">
+          <div class="trust-text">Halal<small>Tersertifikasi BPJPH</small></div>
+          <div class="trust-icon pirt">PIRT</div>
+          <div class="trust-text">P-IRT<small>Terdaftar Dinkes</small></div>
+        </div>
       </div>
       <div class="hero-image">
         <div class="hero-image-frame">
@@ -510,48 +239,23 @@
       <p class="label">Wellness Benefit</p>
       <h2 class="heading" style="margin-bottom:40px;">Nggak cuma minyak — ini yang berubah.</h2>
       <div class="benefits-grid">
-        <div class="benefit-item">
-          <div class="benefit-icon">♡</div>
-          <h3>Jantung</h3>
-          <p>Bantu jantung kerja lebih ringan. Omega 3 nabati yang mudah diserap tubuh.</p>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">○</div>
-          <h3>Kulit</h3>
-          <p>Kelembaban dari dalam. Bukan cuma krim, tapi asupan yang bikin kulit nggak gampang kering.</p>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">○</div>
-          <h3>Diet</h3>
-          <p>Bantu kontrol nafsu makan. Lemak baik bikin kenyang lebih lama tanpa diet ekstrem.</p>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">○</div>
-          <h3>Stamina</h3>
-          <p>Tubuh nggak gampang drop. Cocok buat kamu yang aktivitas padat tiap hari.</p>
-        </div>
+        <div class="benefit-item"><div class="benefit-icon">♡</div><h3>Jantung</h3><p>Bantu jantung kerja lebih ringan. Omega 3 nabati yang mudah diserap tubuh.</p></div>
+        <div class="benefit-item"><div class="benefit-icon">○</div><h3>Kulit</h3><p>Kelembaban dari dalam. Bukan cuma krim, tapi asupan yang bikin kulit nggak gampang kering.</p></div>
+        <div class="benefit-item"><div class="benefit-icon">○</div><h3>Diet</h3><p>Bantu kontrol nafsu makan. Lemak baik bikin kenyang lebih lama tanpa diet ekstrem.</p></div>
+        <div class="benefit-item"><div class="benefit-icon">○</div><h3>Stamina</h3><p>Tubuh nggak gampang drop. Cocok buat kamu yang aktivitas padat tiap hari.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ HOW TO USE ═══ -->
+  <!-- ═══ HOW TO ═══ -->
   <section>
     <div class="container">
       <p class="label">Cara Konsumsi</p>
       <h2 class="heading" style="margin-bottom:48px;">Habit kecil, hasil konsisten.</h2>
-      <div class="how-steps how-grid">
-        <div class="how-step">
-          <h3>1 sendok tiap pagi</h3>
-          <p>Langsung diminum sebelum sarapan. Biar penyerapan maksimal dan jadi rutinitas yang gampang diingat.</p>
-        </div>
-        <div class="how-step">
-          <h3>Campur ke smoothie atau salad</h3>
-          <p>Rasanya nutty ringan, nggak ganggu rasa makanan favorit kamu. Cocok buat clean eating.</p>
-        </div>
-        <div class="how-step">
-          <h3>Konsisten 3–4 minggu</h3>
-          <p>Wellness bukan hasil instan. Yang bikin beda adalah habit harian yang kamu jaga.</p>
-        </div>
+      <div class="how-grid">
+        <div class="how-step"><h3>1 sendok tiap pagi</h3><p>Langsung diminum sebelum sarapan. Biar penyerapan maksimal dan jadi rutinitas yang gampang diingat.</p></div>
+        <div class="how-step"><h3>Campur ke smoothie atau salad</h3><p>Rasanya nutty ringan, nggak ganggu rasa makanan favorit kamu. Cocok buat clean eating.</p></div>
+        <div class="how-step"><h3>Konsisten 3–4 minggu</h3><p>Wellness bukan hasil instan. Yang bikin beda adalah habit harian yang kamu jaga.</p></div>
       </div>
     </div>
   </section>
@@ -562,20 +266,53 @@
       <p class="label">Testimonial</p>
       <h2 class="heading" style="margin-bottom:40px;">Repeat order datang dari hasil nyata.</h2>
       <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Tidur lebih nyenyak, badan juga nggak gampang capek. Sudah 3 bulan konsumsi dan gak berencana berhenti."</blockquote>
-          <cite>Rina, 32</cite>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Tidur lebih nyenyak, badan juga nggak gampang capek. Sudah 3 bulan konsumsi dan gak berencana berhenti."</blockquote><cite>Rina, 32</cite></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Konsumsi tiap pagi, makan jadi lebih terkontrol. Nggak perlu diet ketat, berat badan turun alami."</blockquote><cite>Dedi, 41</cite></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Kulit nggak kering kena AC kantor seharian. Bedanya kerasa setelah 2 minggu rutin minum."</blockquote><cite>Maya, 29</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ QUICK WIN #2: FAQ + GARANSI ═══ -->
+  <section>
+    <div class="container">
+      <p class="label">Masih Ragu?</p>
+      <h2 class="heading" style="margin-bottom:8px;">Pertanyaan umum.</h2>
+      <p class="body-text" style="margin-bottom:0;">Sebelum coba, biar nggak penasaran.</p>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Berapa lama 1 botol habis?</h3>
+          <p>1 botol 250ml cukup buat pemakaian rutin 1 sendok per hari sekitar <strong>3-4 minggu</strong>. Sesuai siklus biar kamu bisa lihat hasilnya.</p>
         </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Konsumsi tiap pagi, makan jadi lebih terkontrol. Nggak perlu diet ketat, berat badan turun alami."</blockquote>
-          <cite>Dedi, 41</cite>
+        <div class="faq-item">
+          <h3>Aman nggak buat ibu hamil/menyusui?</h3>
+          <p>Konsultasi langsung via WA aja ya — tiap kondisi beda, kami kasih saran sesuai kebutuhan kamu.</p>
         </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Kulit nggak kering kena AC kantor seharian. Bedanya kerasa setelah 2 minggu rutin minum."</blockquote>
-          <cite>Maya, 29</cite>
+        <div class="faq-item">
+          <h3>Cara pembayaran apa aja?</h3>
+          <p>Transfer bank (BCA, Mandiri, BRI), QRIS, ShopeePay, dan COD (area terbatas).</p>
+        </div>
+        <div class="faq-item">
+          <h3>Berapa lama sampai?</h3>
+          <p>Jabodetabek: 1-2 hari. Luar Jawa: 3-7 hari. <strong>Gratis ongkir</strong> untuk pembelian pertama.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Ada efek samping?</h3>
+          <p>Produk food-grade aman dikonsumsi. Rekomendasi maksimal 2 sendok per hari. Mulai aja dulu dari 1 sendok.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Ini produk lokal atau impor?</h3>
+          <p>Biji Sacha Inchi dari petani Indonesia, diproses cold-pressed di workshop kami. <strong>100% lokal, Halal MUI & P-IRT terdaftar.</strong></p>
+        </div>
+      </div>
+
+      <!-- Garansi -->
+      <div class="guarantee-banner">
+        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-text">
+          <strong>Garansi 100% uang kembali</strong>
+          <span>Kalau dalam 7 hari pertama kamu nggak cocok, kabarin aja. Full refund, tanpa ribet.</span>
         </div>
       </div>
     </div>
@@ -592,8 +329,8 @@
             Setiap orang beda. Chat dulu biar tau cara konsumsi yang pas buat kamu.
           </p>
           <div class="cta-actions" style="justify-content:center;">
-            <a href="#" class="btn btn-primary">Chat WA →</a>
-            <a href="#" class="btn btn-outline">Lihat Produk</a>
+            <a href="#" class="btn btn-primary">Chat WA Sekarang</a>
+            <a href="#" class="btn btn-outline">Beli di Shopee</a>
           </div>
         </div>
       </div>
@@ -605,7 +342,7 @@
   <!-- ═══ BOTTOM BAR ═══ -->
   <div class="bottom-bar">
     <div class="container">
-      <a href="#" class="btn btn-primary">Chat WA</a>
+      <a href="#" class="btn btn-primary">Chat WA — Gratis Konsultasi</a>
       <a href="#" class="btn btn-outline">Beli di Shopee</a>
     </div>
   </div>
