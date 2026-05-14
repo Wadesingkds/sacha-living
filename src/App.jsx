@@ -36,7 +36,7 @@ export default function SachaLivingCard() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f2ea] text-[#1f1f1f] font-sans">
+    <div className="min-h-screen bg-[#f5f2ea] text-[#1f1f1f] font-sans pb-20">
       {/* HERO */}
       <section className="relative overflow-hidden px-6 py-20 md:px-12">
         <div className="absolute inset-0 bg-gradient-to-b from-[#d9e2cf]/30 to-transparent" />
